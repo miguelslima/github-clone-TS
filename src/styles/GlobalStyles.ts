@@ -17,6 +17,8 @@ export default createGlobalStyle`
     background: none;
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
     color: var(--black);
+  
+    transition: color .2s ease-out;
   }
 
   ul {
@@ -24,6 +26,20 @@ export default createGlobalStyle`
   }
 
   :root {
+    ${(props) => {
+      const theme = props.theme;
+
+      let append = '';
+
+      Object.entries(theme).forEach(([prop, value]) => {
+        append += `--${prop}: ${value};`;
+      });
+      
+      return append;
+    }}
+  }
+
+  /* :root {
     --primary: #fff;
     --black: #1b1f23;
     --gray: #586069;
@@ -48,7 +64,7 @@ export default createGlobalStyle`
     --javascript: #f1e05a;
     --typescript: #2b7489;
     --other-language: #8257e5;
-  }
+  } */
 
 
 `;
